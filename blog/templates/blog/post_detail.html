@@ -36,6 +36,7 @@
         <meta name="twitter:image" content="https://assets.startbootstrap.com/img/meta/twitter-image-start-bootstrap.png" data-dynamic="true">
         <meta name="twitter:site" content="@SBootstrap" data-dynamic="true">
         <meta name="twitter:title" content="Free Bootstrap Themes, Templates, Snippets, and Guides" data-dynamic="true">
+        <script src="https://kit.fontawesome.com/f24d39bd53.js" crossorigin="anonymous"></script>
     </head>
     <body>
         <!-- Responsive navbar-->
@@ -83,6 +84,24 @@
                         <!-- Post content-->
                         <section class="mb-5">
                             <p>{{ post.content }}</p>
+
+                            {% if post.file_upload %}
+                                <a href="{{ post.file_upload.url }}" class="btn btn-lg btn-primary" role="button" download>
+                                    Download:
+
+                                    {% if post.get_file_ext == 'csv' %}
+                                        <i class="fa-regular fa-file-csv"></i>
+                                    {% elif post.get_file_ext == 'xlsx' or post.get_file_ext == 'xls' %}
+                                        <i class="fa-regular fa-file-excel"></i>
+                                    {% elif post.get_file_ext == 'docx' or post.get_file_ext == 'doc' %}
+                                        <i class="fa-light fa-file-doc"></i>
+                                    {% else %}
+                                        <i class="fa-regular fa-file"></i>
+                                    {% endif %}
+
+                                    {{ post.get_file_name }}
+                                </a>
+                            {% endif %}
                         </section>
                     </article>
                     <!-- Comments section-->
